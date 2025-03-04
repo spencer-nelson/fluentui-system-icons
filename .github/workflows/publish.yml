@@ -202,12 +202,12 @@ jobs:
     #     package: packages/react-native-icons/package.json 
 
     # Android
-    - name: Run Android generate script
-      env:
-        # see https://github.com/JS-DevTools/npm-publish/issues/15
-        INPUT_TOKEN: ''
-      run: npm run deploy:android
-      working-directory: importer
+    # - name: Run Android generate script
+    #   env:
+    #     # see https://github.com/JS-DevTools/npm-publish/issues/15
+    #     INPUT_TOKEN: ''
+    #   run: npm run deploy:android
+    #   working-directory: importer
 
     - name: Setup Java
       uses: actions/setup-java@v1
@@ -252,8 +252,8 @@ jobs:
     - name: Update icon sheet
       run: python3 generate_icons_md.py
     
-    # - name: Config git credentials
-    #   run: git config user.email "flubuild@microsoft.com" && git config user.name "Fluent Build System"
+    - name: Config git credentials
+      run: git config user.email "flubuild@microsoft.com" && git config user.name "Fluent Build System"
 
     - name: Commit version number change
       run: |
