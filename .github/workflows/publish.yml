@@ -265,7 +265,6 @@ jobs:
 
     - name: Push release
       run: |
-        REMOTE_REPO="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
         git push HEAD:main --follow-tags --tags
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
