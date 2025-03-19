@@ -3,7 +3,7 @@ name: Publish library
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [ main, xuehua/build-1 ]
     paths:
       - 'assets/**'
 
