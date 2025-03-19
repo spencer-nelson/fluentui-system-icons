@@ -1,0 +1,38 @@
+name: Test Publish library
+
+on:
+  push:
+
+env:
+  LIBRARY_VERSION: 1.1.${{ github.run_number }}
+
+jobs:
+  publish-library:
+    name: Publish icon libraries
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      packages: write
+      actions: write
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Config git credentials
+      run: git config user.email "flubuild@microsoft.com" && git config user.name "Fluent Build System"
+
+    - name: Commit version number change
+      run: |
+        date > generated.txt
+        git add .
+        git commit -m "Release 1.2.3"
+        
+    - name: Tag release
+      run: git tag "1.2.3"
+
+    - name: Push release
+      run: |
+        git push
